@@ -31,14 +31,7 @@ void dijk(int start, int last) {
 		}
 	}
 }
-void go(int x) {
-	if (!previ[x]) {
-		check.push_back(x);
-		return;
-	}
-	check.push_back(x);
-	go(previ[x]);
-}
+
 int dijk2(int u, int v) {
 	fill(dist, dist + node + 1, INF);
 	dist[1] = 0;
