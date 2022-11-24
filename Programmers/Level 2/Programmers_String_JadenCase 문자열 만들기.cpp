@@ -15,9 +15,6 @@ string solution(string s) {
         if (s[i] == ' ' && 'a' <= s[i + 1] && s[i + 1] <= 'z') {
             s[i + 1] -= 32;
         }
-        if ('A' <= s[i] && s[i] <= 'Z' && s[i - 1] != ' ') {
-            s[i] += 32;
-        }
     }
     return s;
 }
