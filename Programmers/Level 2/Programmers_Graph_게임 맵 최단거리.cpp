@@ -12,6 +12,7 @@ int check[105][105];
 int solution(vector<vector<int> > maps)
 {
     int answer;
+    int n = maps.size(), m = maps[0].size();
     q.push({ 0,0 });
     check[0][0] = 1;
     while (!q.empty()) {
@@ -20,13 +21,13 @@ int solution(vector<vector<int> > maps)
         int x = now.first, y = now.second;
         for (int i = 0; i < 4; i++) {
             int nx = x + dx[i], ny = y + dy[i];
-            if (nx < 0 || maps.size() <= nx || ny < 0 || maps[0].size() <= ny || !maps[nx][ny])continue;
+            if (nx < 0 || n <= nx || ny < 0 || m <= ny || !maps[nx][ny])continue;
             if (!check[nx][ny]) {
                 check[nx][ny] = check[x][y] + 1;
                 q.push({ nx,ny });
             }
         }
     }
-    answer = check[maps.size() - 1][maps[0].size() - 1];
+    answer = check[n - 1][m - 1];
     return !answer ? -1 : answer;
 }
