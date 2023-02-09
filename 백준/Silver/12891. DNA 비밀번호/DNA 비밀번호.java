@@ -21,16 +21,16 @@ public class Main {
 		str = scanner.next();
 		for (int i = 0; i < 4; i++)	check[dna[i]] = scanner.nextInt();
 		for (int i = 0; i < m; i++) {
-			char c = str.charAt(i);
-			check[c - 'A']--;
+			check[str.charAt(i) - 'A']--;
 			dq.addLast(str.charAt(i));
 		}
 		if (checkDna())	ans++;
 		for (int i = m; i < n; i++) {
+            char c = str.charAt(i);
 			check[dq.getFirst()-'A']++;
 			dq.removeFirst();
-			dq.addLast(str.charAt(i));
-			check[str.charAt(i) - 'A']--;
+			dq.addLast(c);
+			check[c - 'A']--;
 			if (checkDna())	ans++;
 		}
 		System.out.println(ans);
