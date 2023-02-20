@@ -1,9 +1,10 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 	static int n, r, c, ans, max;
-	static Scanner sc = new Scanner(System.in);
-
 	static void go(int row, int col, int s) {
 		if (row == r && col == c) {
 			System.out.println(ans);
@@ -20,10 +21,12 @@ public class Main {
 		ans += s * s;
 	}
 
-	public static void main(String[] args) {
-		n = sc.nextInt();
-		r = sc.nextInt();
-		c = sc.nextInt();
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		n = Integer.parseInt(st.nextToken());
+		r = Integer.parseInt(st.nextToken());
+		c = Integer.parseInt(st.nextToken());
 		max = 1 << n;
 		go(0, 0, max);
 
