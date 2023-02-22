@@ -6,7 +6,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-	static int n, m, ans;
+	static int n, m, ans, cnt;
 	static int[][] arr;
 	static int[] dx = { 0, 0, -1, 1 }, dy = { 1, -1, 0, 0 };
 
@@ -25,7 +25,12 @@ public class Main {
 				arr[i][j] = Integer.parseInt(st.nextToken());
 				if (arr[i][j] == 1)
 					q.offer(new int[] { i, j });
+				if(arr[i][j]==0)cnt++;
 			}
+		}
+		if(cnt==0) {
+			System.out.println(0);
+			return;
 		}
 		while (!q.isEmpty()) {
 			int x = q.peek()[0], y = q.poll()[1];
@@ -35,18 +40,12 @@ public class Main {
 					continue;
 				arr[nx][ny] = arr[x][y] + 1;
 				q.offer(new int[] { nx, ny });
+				ans=Math.max(ans, arr[nx][ny]);
+				cnt--;
 			}
 		}
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				if (arr[i][j] == 0) {
-					System.out.println(-1);
-					return;
-				}
-				ans = Math.max(ans, arr[i][j]);
-			}
-		}
-		System.out.println(ans-1);
+		if(cnt==0)System.out.println(ans-1);
+		else System.out.println(-1);
 	}
 
 }
