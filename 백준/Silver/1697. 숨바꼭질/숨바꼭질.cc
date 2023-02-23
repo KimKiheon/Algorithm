@@ -1,39 +1,36 @@
 #include<iostream>
-#include<utility>
+#include<algorithm>
+#include<vector>
 #include<queue>
+#include<utility>
+#include<cstring>
 using namespace std;
-typedef pair<int, int>p;
-queue<p>q;
-bool visited[400005];
-int a, b, cnt;
-void bfs(int start,int end) {
-	q.push({ a,0 });
-	while (!q.empty()) {
-		p now = q.front();
-		q.pop();
-		int x = now.first;
-		int temp = now.second;
-		if (x == end) {
-			printf("%d", temp);
-			return;
-		}
-		if (x*2<=100000&&!visited[2 * x]) {
-			visited[2 * x] = 1;
-			q.push({ 2*x,temp+1 });
-		}
-		if (x<100000&&!visited[x + 1]) {
-			visited[x + 1] = 1;
-			q.push({ x + 1,temp + 1 });
-		}
-		if (x>0&&!visited[x - 1]) {
-			visited[x - 1] = 1;
-			q.push({ x - 1,temp + 1 });
-		}
+int n, m, check[100005], cnt;
+queue<int>q;
+void find(int now, int next) {
+	if (next < 0 || next>100000)return;
+	if (check[next] > check[now] + 1) {
+		check[next] = check[now] + 1;
+		q.push(next);
 	}
 }
 int main() {
-	scanf("%d %d", &a, &b);
-	visited[a] = 1;
-	bfs(a, b);
+	ios_base::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+	cin >> n >> m;
+	q.push(n);
+	for (int i = 0; i < 100005; i++)check[i] = 10000000;
+	check[n] = 0;
+	while (!q.empty()) {
+		int now = q.front(), next[3] = { now - 1,now + 1,now * 2 };
+		q.pop();
+		if (now == m) {
+			break;
+		}
+		for (int i = 0; i < 3; i++) {
+			if (i && next[i] > 100000)break;
+			find(now, next[i]);
+		}
+	}
+	cout << check[m] << "\n";
 	return 0;
 }
