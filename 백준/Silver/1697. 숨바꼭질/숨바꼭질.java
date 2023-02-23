@@ -27,7 +27,6 @@ public class Main {
 			if (now == m)
 				break;
 			for (int i = 0; i < 3; i++) {
-				if (i > 0 && next[i] > 100000) break;
 				find(now, next[i]);
 			}
 		}
