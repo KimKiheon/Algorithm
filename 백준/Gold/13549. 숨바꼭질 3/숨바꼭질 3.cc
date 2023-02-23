@@ -24,8 +24,7 @@ int main() {
 		int now = q.front(), next[3] = { now -1,now + 1,now * 2 }, sec[3] = { 1,1,0 };
 		q.pop();
 		if (now == m) {
-			cnt++;
-			if (cnt > 3)break;
+			break;
 		}
 		for (int i = 0; i < 3; i++) {
 			if (i && next[i] > 100000)break;
