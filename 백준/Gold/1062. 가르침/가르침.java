@@ -21,19 +21,7 @@ public class Main {
 		for (int i = 0; i < n; i++)	arr[i] = br.readLine();
 	}
 
-	static boolean edgeCase() {
-		if (k < 5) {
-			System.out.println(0);
-			return true;
-		}
-		if (k == 26) {
-			System.out.println(n);
-			return true;
-		}
-		return false;
-	}
-
-	static void go() {
+	static void go() { //알파벳 조합 후 완전 탐색
 		int cnt = 0;
 		for (int i = 0; i < n; i++) {
 			String str = arr[i];
@@ -51,8 +39,8 @@ public class Main {
 
 	}
 
-	static void com(int start, int cnt) {
-		if (cnt == k) {
+	static void com(int start, int cnt) { //조합
+		if (cnt == k) { //조합 후 완탐
 			go();
 			return;
 		}
@@ -66,8 +54,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
-		input();
-		if (edgeCase())	return;
+		input(); //입력
 		k -= 5;
 		com(0, 0);
 		System.out.println(ans);
