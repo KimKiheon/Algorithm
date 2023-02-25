@@ -10,17 +10,12 @@ int arr[100005];
 int main() {
 	ios_base::sync_with_stdio(false), cin.tie(0), cout.tie(0);
 	cin >> n >> m;
-	if (m == 0) {
-		cout << 0;
-		return 0;
-	}
 	for (int i = 0; i < n; i++)cin >> arr[i];
 	sort(arr, arr + n);
 	for (int i = 0; i < n; i++) {
-		int key = arr[i];
-		int tmp = *lower_bound(arr, arr + n, key + m);
+		int tmp = *lower_bound(arr, arr + n, arr[i] + m);
 		if (!tmp)continue;
-		ans = min(ans, tmp - key);
+		ans = min(ans, tmp - arr[i]);
 	}
 	cout << ans << "\n";
 	return 0;
