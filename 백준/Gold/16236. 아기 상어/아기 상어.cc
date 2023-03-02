@@ -10,7 +10,7 @@ struct Fish {
 };
 typedef pair<int, int>p;
 p now;
-int n, fishCnt, ans, sharkSize = 2, expe;
+int n, ans, sharkSize = 2, expe;
 int arr[21][21], check[21][21];
 int dx[4] = { 0,0,-1,1 }, dy[4] = { 1,-1,0,0 };
 vector<Fish>canEat;
@@ -34,9 +34,6 @@ void input() {
 				now = { i,j };
 				arr[i][j] = 0;
 			}
-			if (arr[i][j] && arr[i][j] < 7) {
-				fishCnt++;
-			}
 		}
 	}
 	expe = 2;
@@ -56,15 +53,11 @@ int bfs() {
 			}
 		}
 	}
-	
 	return canEat.size();
 }
 void eat(Fish target) {
 	ans += check[target.x][target.y];
-
 	arr[target.x][target.y] = 0;
-	
-	fishCnt--;
 	now = { target.x,target.y };
 	expe--;
 	if (!expe) {
