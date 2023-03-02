@@ -26,7 +26,7 @@ public class Main {
 	static int v, e, start;
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer st;
-	static StringBuilder sb;
+	static StringBuilder sb = new StringBuilder();
 	static List<Edge>[] list;
 	static int[] dist;
 
@@ -76,10 +76,9 @@ public class Main {
 		dist[start] = 0;
 		dijk();
 		for (int i = 1; i <= v; i++) {
-			if (dist[i] == Integer.MAX_VALUE) {
-				System.out.println("INF");
-			} else
-				System.out.println(dist[i]);
+			if (dist[i] == Integer.MAX_VALUE)sb.append("INF"+"\n");
+			else sb.append(dist[i]+"\n");
 		}
+		System.out.println(sb+"\n");
 	}
 }
