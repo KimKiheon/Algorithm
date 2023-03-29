@@ -22,6 +22,7 @@ public class Main {
 	}
 
 	static void go(int cnt, int now, int sum) {
+		if(sum>ans)return;
 		if (cnt == n - 1) {
 			if(arr[now][0]==0) {
 				return;
