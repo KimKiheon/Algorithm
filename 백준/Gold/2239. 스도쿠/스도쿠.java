@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    static boolean row[][], col[][], zone[][];
+    static boolean[][] row, col, zone;
     static int arr[][];
 
     static void input() throws IOException {
@@ -32,7 +32,6 @@ public class Main {
             System.out.println();
         }
     }
-
     static void go(int cnt) {
         int x = cnt / 9, y = cnt % 9;
         int tmp = 3 * (x / 3) + (y / 3);
@@ -40,17 +39,18 @@ public class Main {
             print();
             System.exit(0);
         }
-        if(arr[x][y]==0) {
-            for (int i = 1; i <= 9; i++) {
-                if (row[x][i] == true || col[y][i] == true || zone[tmp][i] == true) continue;
-                row[x][i] = col[y][i] = zone[tmp][i] = true;
-                arr[x][y] = i;
-                go(cnt + 1);
-                row[x][i] = col[y][i] = zone[tmp][i] = false;
-                arr[x][y] = 0;
-            }
+        if (arr[x][y] != 0) {
+            go(cnt + 1);
+            return;
         }
-        else if (arr[x][y] != 0) go(cnt + 1);
+        for (int i = 1; i <= 9; i++) {
+            if (row[x][i] == true || col[y][i] == true || zone[tmp][i] == true) continue;
+            row[x][i] = col[y][i] = zone[tmp][i] = true;
+            arr[x][y] = i;
+            go(cnt + 1);
+            row[x][i] = col[y][i] = zone[tmp][i] = false;
+            arr[x][y] = 0;
+        }
     }
 
     public static void main(String[] args) throws IOException {
