@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int arr[][], paper[] = {0, 5, 5, 5, 5, 5}, ans = Integer.MAX_VALUE, paperCnt;
+    static int arr[][], paper[] = {0, 5, 5, 5, 5, 5}, ans = (int)1e9, paperCnt;
 
     static boolean isValid(int x, int y, int s) {
         if (10 < x + s || 10 < y + s || paper[s] < 1) return false;
@@ -14,7 +14,6 @@ public class Main {
         }
         return true;
     }
-
     static void input() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         arr = new int[10][10];
@@ -26,29 +25,18 @@ public class Main {
             }
         }
     }
-
     static void add(int x, int y, int s) {
         paper[s]--;
-        for (int i = x; i < x + s; i++) {
-            for (int j = y; j < y + s; j++) {
-                arr[i][j] = 0;
-            }
-        }
+        for (int i = x; i < x + s; i++) for (int j = y; j < y + s; j++) arr[i][j] = 0;
         paperCnt -= s * s;
         return;
     }
-
     static void delete(int x, int y, int s) {
         paper[s]++;
-        for (int i = x; i < x + s; i++) {
-            for (int j = y; j < y + s; j++) {
-                arr[i][j] = 1;
-            }
-        }
+        for (int i = x; i < x + s; i++) for (int j = y; j < y + s; j++) arr[i][j] = 1;
         paperCnt += s * s;
         return;
     }
-
     static void go(int x, int y, int cnt) {
         if (paperCnt == 0) {
             ans = Math.min(ans, cnt);
@@ -75,7 +63,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         input();
         go(0, 0, 0);
-        if (ans == Integer.MAX_VALUE) System.out.println(-1);
+        if (ans == 1e9) System.out.println(-1);
         else System.out.println(ans);
     }
 
