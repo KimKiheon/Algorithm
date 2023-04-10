@@ -7,9 +7,9 @@ public class Main {
     static int arr[][], paper[] = {0, 5, 5, 5, 5, 5}, ans = Integer.MAX_VALUE, paperCnt;
 
     static boolean isValid(int x, int y, int s) {
-        if (10 < x + s || 10 < y + s || paper[s] == 0) return false;
+        if (10 < x + s || 10 < y + s || paper[s] < 1) return false;
         for (int i = x; i < x + s; i++) {
-            for (int j = y; j < y + s; j++) if (arr[i][j] == 0) return false;
+            for (int j = y; j < y + s; j++) if (arr[i][j] < 1) return false;
 
         }
         return true;
@@ -22,7 +22,7 @@ public class Main {
             StringTokenizer st = new StringTokenizer(br.readLine());
             for (int j = 0; j < 10; j++) {
                 arr[i][j] = Integer.parseInt(st.nextToken());
-                if (arr[i][j] == 1) paperCnt++;
+                if (arr[i][j] > 0) paperCnt++;
             }
         }
     }
@@ -57,7 +57,7 @@ public class Main {
         if (cnt > ans) return;
         for (int i = x; i < 10; i++) {
             for (int j = y; j < 10; j++) {
-                if (arr[i][j] == 1) {
+                if (arr[i][j] > 0) {
                     for (int k = 5; k >= 1; k--) {
                         if (isValid(i, j, k)) {
                             add(i, j, k);
