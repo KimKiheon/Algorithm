@@ -24,8 +24,9 @@ int main() {
 				path.push_back(j);
 				j = arr[j];
 			}
-			auto k = find(path.begin(), path.end(), j);
-			cnt += distance(path.begin(), k);
+			int idx = 0;
+			while (idx<path.size()&&path[idx]!=j) idx++;
+			cnt += idx;
 		}
 		cout << cnt << "\n";
 	}
